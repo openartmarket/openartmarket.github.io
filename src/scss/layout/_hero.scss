@@ -19,6 +19,14 @@
 	margin-bottom: 80px;
 }
 
+.hero input{
+	display: block;
+	line-height: 2.4;
+	padding: 0 .75rem;
+	width: 100%;
+	margin: 0 0 1rem;
+}
+
 .lights-toggle {
 	color: rgba(color(typography, 2), .64);
 }

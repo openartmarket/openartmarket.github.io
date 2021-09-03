@@ -1,7 +1,7 @@
 .button {
     display: inline-flex;
-	@if ( get-font-family(heading) != get-font-family(base) ) {
-		@include font-family(heading);
+	@if ( get-font-family(base) != get-font-family(base) ) {
+		@include font-family(base);
 	}
     @include font-size(8, mobile, true, false, true);
     @if ( get-font-size(8, desktop) != get-font-size(8, mobile) ) {

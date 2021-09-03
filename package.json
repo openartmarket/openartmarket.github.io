@@ -1,15 +1,12 @@
 {
-  "name": "switch",
+  "name": "openartmarket",
   "version": "1.0.0",
-  "description": "Switch Template",
-  "author": "Pasquale Vitiello <pasqualevitiello@gmail.com>",
-  "license": "GPLv3",
+  "description": "Open Art Market Frontend",
+  "author": "Eivind Ingebrigtsen",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/pasqualevitiello/switch.git"
-  },
-  "bugs": {
-    "url": "https://bitbucket.org/pasqualevitiello/switch/issues"
+    "url": "git+https://github.com/eivindingebrigtsen/openartmarket.github.io.git"
   },
   "scripts": {
     "clean": "rimraf dist/{css/*,js/*,images/*}",
@@ -34,11 +31,6 @@
     "autoprefixer": "^9.0.1",
     "browser-sync": "^2.12.8",
     "eslint": "^5.2.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
     "imagemin-cli": "^3.0.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.2",
