@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Art is a powerful investment, and you don't have to be a billionaire to buy in. Open Art Market makes it easy to buy and sell thinly traded contemporary art from emerging artists from all over the world. Our marketplace helps you invest in fractions of art from an international roster of artists, and artworks.">
     <title>Open Art Market | exchange for fractional ownership of rare art</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/ico/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Playfair+Display:600" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -34,6 +38,33 @@
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0">Invest in rare artworks from as little as $5</h1>
 	                        <p class="hero-paragraph">Enter the world of art investments in a new marketplace where anyone can long-term invest in fractions of hard-to-find artworks.</p>
+                            <div id="talk-to-server" style="display:none">
+                                <svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" width="24" height="24">
+                                 <rect fill="none" stroke="#EEE" stroke-width="4" x="25" y="25" width="50" height="50">
+                                <animateTransform
+                                   attributeName="transform"
+                                   dur="0.5s"
+                                   from="0 50 50"
+                                   to="180 50 50"
+                                   type="rotate"
+                                   id="strokeBox"
+                                   attributeType="XML"
+                                   begin="rectBox.end"/>
+                                </rect>
+                                 <rect x="27" y="27" fill="#EEE" width="46" height="50">
+                                <animate
+                                   attributeName="height"
+                                   dur="1.3s"
+                                   attributeType="XML"
+                                   from="50" 
+                                   to="0"
+                                   id="rectBox" 
+                                   fill="freeze"
+                                   begin="0s;strokeBox.end"/>
+                                </rect>
+                              </svg>
+                            </div>
                             <div id="thanks" style="display:none">
                             <p>💯 You are on the wait-list, we will get in touch with more news soon.</p>
                             </div>
@@ -110,7 +141,7 @@
                                     </div>
 									<div class="feature-content">
                                     	<h3 class="feature-title mt-0">3-10 year hold period</h3>
-                                    	<p class="text-sm mb-0">Receive your pro rata proceeds if and when the painting sells <br><small>(net of fees)*</small></p>
+                                    	<p class="text-sm mb-0">Receive your pro rata proceeds if and when the painting sells <small>(net of fees)*</small></p>
 									</div>
 								</div>
                             </div>
@@ -178,13 +209,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         var SUPABASE_URL = 'https://yjddxwxtqedktdxnoybg.supabase.co'
-var SUPABASE_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDY5OTUxMywiZXhwIjoxOTQ2Mjc1NTEzfQ.hPcNfBocdk9Gd7q--BQvh99g00xrzaE1_bbSui-Ntys'
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDY5OTUxMywiZXhwIjoxOTQ2Mjc1NTEzfQ.hPcNfBocdk9Gd7q--BQvh99g00xrzaE1_bbSui-Ntys'
 
 var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 window.userToken = null
 const showThankYouMessage = ()=>{
-    document.querySelector("#waitlist").style.display = 'none';
+    document.querySelector("#talk-to-server").style.display = 'none';
     document.querySelector("#thanks").style.display = 'block';
 }
 let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -194,6 +224,8 @@ const logInSubmitted = (event) => {
   //event.preventDefault()
   const email = document.querySelector('#email').value
   //const password = event.target[1].value
+  document.querySelector("#waitlist").style.display = 'none';
+  document.querySelector("#talk-to-server").style.display = 'block';
 
   supabase.auth
     .signIn({ email })
