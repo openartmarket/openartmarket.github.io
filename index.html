@@ -70,19 +70,19 @@
             pointer-events: none;
             cursor: default;
         }
-        
+
         .c-formContainer,
         .c-form,
         .c-form__toggle {
             width: 20em;
             height: 6.25em;
         }
-        
+
         .c-formContainer {
             position: relative;
             font-weight: 700;
         }
-        
+
         .c-form,
         .c-form__toggle {
             position: absolute;
@@ -90,7 +90,7 @@
             background-color: #ffffff;
             transition: 0.2s;
         }
-        
+
         .c-form {
             left: 50%;
             transform: translateX(-50%);
@@ -100,7 +100,7 @@
             display: flex;
             justify-content: center;
         }
-        
+
         .c-form__toggle {
             color: #23333A;
             top: 0;
@@ -114,7 +114,7 @@
             font-size: 1.75em;
             content: attr(data-title);
         }
-        
+
         .c-form__input,
         .c-form__button {
             font: inherit;
@@ -123,7 +123,7 @@
             border-radius: 5em;
             box-sizing: border-box;
         }
-        
+
         .c-form__input,
         .c-form__buttonLabel {
             font-size: 1.75em;
@@ -132,7 +132,7 @@
             transform: scale(0.7);
             transition: 0s;
         }
-        
+
         .c-form__input {
             color: #999;
             height: 100%;
@@ -151,7 +151,7 @@
         .c-form__input:required:valid + .c-form__buttonLabel::before {
             pointer-events: initial;
         }
-        
+
         .c-form__buttonLabel {
             color: #efefef;
             height: 100%;
@@ -165,7 +165,7 @@
             pointer-events: none;
             cursor: pointer;
         }
-        
+
         .c-form__button {
             color: inherit;
             padding: 0;
@@ -191,27 +191,27 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         var SUPABASE_URL = 'https://yjddxwxtqedktdxnoybg.supabase.co'
         var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDY5OTUxMywiZXhwIjoxOTQ2Mjc1NTEzfQ.hPcNfBocdk9Gd7q--BQvh99g00xrzaE1_bbSui-Ntys'
-        
+
         var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
         window.userToken = null
         let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if(matched) document.body.classList.add('lights-off')
-        
+
         window.logInSubmitted = function() {
-            console.log("🎩 Signing up with email");
+            console.log("📡 Preparing broadcast");
             const email = document.querySelector('#email').value
             console.log("🎩 Signing up with email: " + email);
             supabase.auth.signIn({ email })
             .then((response) => {
-                console.log('done', response)
+                console.log('✅ done:', response)
             })
             .catch((err) => {
-                alert(err.response.text)
+                console.log('🛑 error:', err.response.text)
             })
         }
     </script>
@@ -228,53 +228,53 @@
         console.log('👨‍🎤 but we copied that from https://codepen.io/vedadeepta/pen/MpgovO & https://codepen.io/bertdida/pen/xyPKRX')
         console.log('💩 Hope to see you on the waitlist!')
         window.	onload = function(){
-            
+
             var canvas = document.getElementById('textparticle'),
             ctx = canvas.getContext('2d');
-            
+
             var cw = canvas.width  =  window.innerWidth;
             var ch = canvas.height =  450;
             var keyword;
-            var radius = 100;
-            var drag = 0.79;
+            var radius = 500;
+            var drag = 0.88;
             var ease = 0.0001;
             var density = 2;
             var offset = 0;
             var timeout = 25;
             var pixels;
             var particles = [];
-            
+
             var mx = 0, my = 0;
-            
+
             keyword = "O";
             ctx.font = "320px 'ButlerExtraBold'";
             var mtw = ctx.measureText(keyword).width;
             var mth = ctx.measureText(keyword).height;
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round(mtw/2 ) ) , ~~(( ch / 2 )) );
-            
+
             keyword = "Own";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+40) );
-            
+
             keyword = "Fractions";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+70) );
-            
+
             keyword = "of Unique Art";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+100) );
-            
-            
-            
-            
-            
+
+
+
+
+
             canvas.addEventListener('mousemove',function(e){
-                
+
                 mx = e.clientX - canvas.offsetLeft;
                 my = e.clientY - canvas.offsetTop;
-                
+
             });
-            
+
             var Particle = function(x,y)
             {
                 this.hx = ~~(x - offset * Math.random() );
@@ -284,8 +284,8 @@
                 this.vx = Math.random()*10-5;
                 this.vy = Math.random()*10-5;
             }
-            
-            
+
+
             Particle.prototype.update = function()
             {
                 var dx = this.cx - mx;
@@ -293,25 +293,25 @@
                 var ds =  (dx * dx) + (dy * dy);
                 var aradius = Math.min(radius / ds, radius);
                 var theta   = Math.atan2(dy, dx);
-                
+
                 var hdx = this.hx - this.cx;
                 var hdy = this.hy - this.cy;
                 var hds = Math.sqrt( (hdx * hdx) + (hdy * hdy) )  ;
                 var hf  = (hds * 0.01) ;
                 var htheta = Math.atan2(hdy, hdx);
-                
-                
-                
+
+
+
                 this.vx += aradius * Math.cos(theta) + hf * Math.cos(htheta);
                 this.vy += aradius * Math.sin(theta) + hf * Math.sin(htheta);
-                
+
                 this.vx *= drag;
                 this.vy *= drag;
-                
+
                 this.cx += this.vx;
                 this.cy += this.vy;
-                
-                
+
+
                 this.cx = this.cx + (this.vx *= drag) + ( this.hx - this.cx ) * ease;
                 this.cy = this.cy + (this.vy *= drag) + ( this.hy - this.cy ) * ease;
             }
@@ -326,35 +326,35 @@
                 }
                 particles = [];
             }
-            
+
             var draw = function()
             {
-                
+
                 b = (a = ctx.createImageData(cw, ch) ).data
-                
-                
+
+
                 for( var i=0; i < particles.length; i++ )
                 {
                     particles[i].update();
                 }
-                
+
                 for( var i=0; i < particles.length; i++ )
                 {
                     p = particles[i];
                     b[n = ( ~~p.cx + ( ~~p.cy * cw ) ) * 4] = b[n+1] = b[n+2] = 220, b[n+3] = 255;
-                    
+
                 }
-                
+
                 //a.data = b;
-                
+
                 ctx.putImageData( a, 0, 0 );
                 setTimeout(function(){
                     requestAnimationFrame(draw);
                 }, timeout );
-                
+
             }
-            
-            
+
+
             var init = function()
             {
                 pixels = ctx.getImageData(0, 0, cw, ch).data;
@@ -363,7 +363,7 @@
                     for( var j = 0; j < cw; j = j + density)
                     {
                         var index = (j  + i * cw ) *4  ;
-                        
+
                         if( pixels[index + 3] > 128)
                         {
                             //acts ad a filter for adding new particles.
@@ -381,12 +381,12 @@
                     }
                 }
             }
-            
-            
+
+
             init();
             draw();
-            
-            
+
+
         }
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
