@@ -183,8 +183,8 @@
             <div class="c-formContainer">
                 <form class="c-form" action="">
                     <input class="c-form__input" placeholder="e-mail@company.com" type="email" id="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
-                    <label class="c-form__buttonLabel" for="checkbox">
-                        <button class="c-form__button" type="button" onclick="javascript:logInSubmitted()">Submit</button>
+                    <label class="c-form__buttonLabel" for="checkbox" onclick="javascript:logInSubmitted()">
+                        <button class="c-form__button" type="button">Submit</button>
                     </label>
                     <label class="c-form__toggle" for="checkbox" data-title="Get on the waitlist"></label>
                 </form>
@@ -202,11 +202,11 @@
         let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if(matched) document.body.classList.add('lights-off')
         
-        const logInSubmitted = (event) => {
-            event.preventDefault();
+        window.logInSubmitted = function() {
+            console.log("🎩 Signing up with email");
             const email = document.querySelector('#email').value
-            supabase.auth
-            .signIn({ email })
+            console.log("🎩 Signing up with email: " + email);
+            supabase.auth.signIn({ email })
             .then((response) => {
                 console.log('done', response)
             })
