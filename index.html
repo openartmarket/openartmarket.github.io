@@ -4,248 +4,388 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Art is a powerful investment, and you don't have to be a billionaire to buy in. Open Art Market makes it easy to buy and sell thinly traded contemporary art from emerging artists from all over the world. Our marketplace helps you invest in fractions of art from an international roster of artists, and artworks.">
-    <title>Open Art Market | exchange for fractional ownership of rare art</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/dist/ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/dist/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/dist/ico/favicon-16x16.png">
+    <meta name="description" content="Art is a powerful investment, and you don't have to be a billionaire to buy in.">
+    <title>Open Art Market | fractional ownership of rare art</title>
     <link rel="manifest" href="/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Playfair+Display:600" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'ButlerExtraBold';
+            src:  url('font/Butler-ExtraBold.woff2') format('woff2'),
+            url('font/Butler-ExtraBold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Butler';
+            src:  url('font/Butler.woff2') format('woff2'),
+            url('font/Butler.woff') format('woff');
+        }
+        @keyframes slideUp {
+            0%{
+                top: 10000px;
+            }
+            100%{
+                top: 0;
+            }
+        }
+        #waitlist{
+            position: relative;
+            top: 10000px;
+            animation: cubic-bezier(0.19, 1, 0.22, 1) slideUp 2s forwards;
+            animation-delay: 5s;
+        }
+        body{
+            background-color:#23333A;
+            font-family: "Butler";
+            font-size: 12px;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .c-checkbox {
+            display: none;
+        }
+        .c-checkbox:checked + .c-formContainer .c-form {
+            width: 37.5em;
+        }
+        .c-checkbox:checked + .c-formContainer .c-form__toggle {
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0.7);
+        }
+        .c-checkbox:checked + .c-formContainer .c-form__input,
+        .c-checkbox:checked + .c-formContainer .c-form__buttonLabel {
+            transition: 0.2s 0.1s;
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .c-checkbox:not(:checked) + .c-formContainer .c-form__input:required:valid ~ .c-form__toggle::before, 
+        .c-checkbox:checked + .c-formContainer .c-form__input:required:valid ~ .c-form__toggle::before {
+            content: "💯 Thank you";
+        }
+        .c-checkbox:not(:checked) + .c-formContainer .c-form__input:required:valid ~ .c-form__toggle {
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .c-formContainer,
+        .c-form,
+        .c-form__toggle {
+            width: 20em;
+            height: 6.25em;
+        }
+        
+        .c-formContainer {
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .c-form,
+        .c-form__toggle {
+            position: absolute;
+            border-radius: 6.25em;
+            background-color: #ffffff;
+            transition: 0.2s;
+        }
+        
+        .c-form {
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.625em;
+            box-sizing: border-box;
+            box-shadow: 0 0.125em 0.3125em rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+        }
+        
+        .c-form__toggle {
+            color: #23333A;
+            top: 0;
+            cursor: pointer;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .c-form__toggle::before {
+            font-size: 1.75em;
+            content: attr(data-title);
+        }
+        
+        .c-form__input,
+        .c-form__button {
+            font: inherit;
+            border: 0;
+            outline: 0;
+            border-radius: 5em;
+            box-sizing: border-box;
+        }
+        
+        .c-form__input,
+        .c-form__buttonLabel {
+            font-size: 1.75em;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.7);
+            transition: 0s;
+        }
+        
+        .c-form__input {
+            color: #999;
+            height: 100%;
+            width: 100%;
+            padding: 0 0.714em;
+        }
+        .c-form__input::placeholder {
+            color: currentColor;
+        }
+        .c-form__input:required:valid {
+            color: #23333A;
+        }
+        .c-form__input:required:valid + .c-form__buttonLabel {
+            color: #ffffff;
+        }
+        .c-form__input:required:valid + .c-form__buttonLabel::before {
+            pointer-events: initial;
+        }
+        
+        .c-form__buttonLabel {
+            color: #efefef;
+            height: 100%;
+            width: auto;
+        }
+        .c-form__buttonLabel::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            cursor: pointer;
+        }
+        
+        .c-form__button {
+            color: inherit;
+            padding: 0;
+            height: 100%;
+            width: 5em;
+            background-color: #23333A;
+        }
+    </style>
 </head>
-<body class="is-boxed has-animations">
-    <div class="body-wrap boxed-container">
-        <header class="site-header">
-            <div class="container">
-                <div class="site-header-inner">
-                    <div class="brand header-brand">
-                        <h1 class="m-0">
-                            <a href="#">
-								<img class="header-logo-image asset-light" src="dist/images/logo-light.svg" alt="Logo">
-								<img class="header-logo-image asset-dark" src="dist/images/logo-dark.svg" alt="Logo">
-                            </a>
-                        </h1>
-                    </div>
-                </div>
+<body>
+    <div class="container">
+        <canvas id = "textparticle"></canvas>
+        <div id="waitlist">
+            <input class="c-checkbox" type="checkbox" id="checkbox">
+            <div class="c-formContainer">
+                <form class="c-form" action="">
+                    <input class="c-form__input" placeholder="e-mail@company.com" type="email" id="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                    <label class="c-form__buttonLabel" for="checkbox">
+                        <button class="c-form__button" type="button" onclick="javascript:logInSubmitted()">Submit</button>
+                    </label>
+                    <label class="c-form__toggle" for="checkbox" data-title="Get on the waitlist"></label>
+                </form>
             </div>
-        </header>
-
-        <main>
-            <section class="hero">
-                <div class="container">
-                    <div class="hero-inner">
-						<div class="hero-copy">
-	                        <h1 class="hero-title mt-0">Invest in rare artworks from as little as $5</h1>
-	                        <p class="hero-paragraph">Enter the world of art investments in a new marketplace where anyone can long-term invest in fractions of hard-to-find artworks.</p>
-                            <div id="talk-to-server" style="display:none">
-                                <svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" width="24" height="24">
-                                 <rect fill="none" stroke="#EEE" stroke-width="4" x="25" y="25" width="50" height="50">
-                                <animateTransform
-                                   attributeName="transform"
-                                   dur="0.5s"
-                                   from="0 50 50"
-                                   to="180 50 50"
-                                   type="rotate"
-                                   id="strokeBox"
-                                   attributeType="XML"
-                                   begin="rectBox.end"/>
-                                </rect>
-                                 <rect x="27" y="27" fill="#EEE" width="46" height="50">
-                                <animate
-                                   attributeName="height"
-                                   dur="1.3s"
-                                   attributeType="XML"
-                                   from="50" 
-                                   to="0"
-                                   id="rectBox" 
-                                   fill="freeze"
-                                   begin="0s;strokeBox.end"/>
-                                </rect>
-                              </svg>
-                            </div>
-                            <div id="thanks" style="display:none">
-                            <p>💯 You are on the wait-list, we will get in touch with more news soon.</p>
-                            </div>
-                            <div id="waitlist">
-                                <input id="email" name="email" type="email" placeholder="email@domain.com" />
-                                <div class="hero-cta">
-                                    <a class="button button-primary" onclick="javascript:logInSubmitted()">Get on the waitlist</a>
-                                </div>
-                            </div>
-						</div>
-						<div class="hero-media">
-							<div class="hero-media-container">
-								<img class="hero-media-image asset-light" src="dist/images/hero-media-light.svg" alt="Hero media">
-								<img class="hero-media-image asset-dark" src="dist/images/hero-media-dark.svg" alt="Hero media">
-							</div>
-						</div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features section">
-                <div class="container">
-					<div class="features-inner section-inner has-bottom-divider">
-						<div class="features-header text-center">
-							<div class="container-sm">
-								<h2 class="section-title mt-0">How it works</h2>
-	                            <p class="section-paragraph">Open Art Market lets you buy a fraction of a museum-quality masterpiece. That way, even if you can’t afford a painting or sculpture outright, you can still own a piece of fine art and get your part of the profits when it sells again.</p>
-								<div class="features-image">
-								</div>
-							</div>
-                        </div>
-                        <div class="features-wrap">
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<img class="asset-light" src="dist/images/feature-01-light.svg" alt="Feature 01">
-										<img class="asset-dark" src="dist/images/feature-01-dark.svg" alt="Feature 01">
-                                    </div>
-									<div class="feature-content">
-                                    	<h3 class="feature-title mt-0">Finds the best artists</h3>
-                                    	<p class="text-sm mb-0">OAM determines which artist markets have the most momentum</p>
-									</div>
-								</div>
-                            </div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<img class="asset-light" src="dist/images/feature-02-light.svg" alt="Feature 02">
-										<img class="asset-dark" src="dist/images/feature-02-dark.svg" alt="Feature 02">
-                                    </div>
-									<div class="feature-content">
-                                    	<h3 class="feature-title mt-0">Collects the best artworks</h3>
-                                    	<p class="text-sm mb-0">OAM finds collectors who have the best examples available and secure them in our Vaults</p>
-									</div>
-								</div>
-                            </div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<img class="asset-light" src="dist/images/feature-03-light.svg" alt="Feature 03">
-										<img class="asset-dark" src="dist/images/feature-03-dark.svg" alt="Feature 03">
-                                    </div>
-									<div class="feature-content">
-                                    	<h3 class="feature-title mt-0">Tokenize the artwork</h3>
-                                    	<p class="text-sm mb-0">OAM opens up Artwork for sale and bids by any investor in the community</p>
-									</div>
-								</div>
-                            </div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<img class="asset-light" src="dist/images/feature-04-light.svg" alt="Feature 04">
-										<img class="asset-dark" src="dist/images/feature-04-dark.svg" alt="Feature 04">
-                                    </div>
-									<div class="feature-content">
-                                    	<h3 class="feature-title mt-0">3-10 year hold period</h3>
-                                    	<p class="text-sm mb-0">Receive your pro rata proceeds if and when the painting sells <small>(net of fees)*</small></p>
-									</div>
-								</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-			<section class="cta section">
-                <div class="container-sm">
-                    <div class="cta-inner section-inner">
-                        <div class="cta-header text-center">
-                            <h2 class="section-title mt-0">Do you collect artworks?</h2>
-                            <p class="section-paragraph">Open Art Market is currently looking for privately owned artwork from renown artists in Norway.</p>
-							<div class="cta-cta">
-								<a class="button button-primary" href="mailto:application[a]openartmarket.com?subject=Artwork%20application">Get in touch</a>
-							</div>
-					    </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer has-top-divider">
-            <div class="container">
-                <div class="site-footer-inner">
-                    <div class="brand footer-brand">
-                        <a href="#">
-							<img class="asset-light" src="dist/images/logo-dark.svg" alt="Logo">
-							<img class="asset-dark" src="dist/images/logo-dark.svg" alt="Logo">
-                        </a>
-                    </div>
-                    <ul class="footer-links list-reset">
-                        <li>
-                            <a href="mailto:contact@openartmarket.com">Contact</a>
-                        </li>
-                    </ul>
-                    <ul class="footer-social-links list-reset">
-                        <li>
-                            <a href="https://www.twitter.com/oamnft">
-                                <span class="screen-reader-text">Twitter</span>
-                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z" fill="#FFF"/>
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/open-art-market/">
-                                <span class="screen-reader-text">LinkedIn</span>
-                                <svg width="16" height="16" viewBox="0 0 310 310" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M72.1598 99.73H9.92676C7.16476 99.73 4.92676 101.969 4.92676 104.73V304.658C4.92676 307.42 7.16476 309.658 9.92676 309.658H72.1598C74.9218 309.658 77.1598 307.42 77.1598 304.658V104.73C77.1598 101.969 74.9218 99.73 72.1598 99.73Z" fill="white"/>
-                                    <path d="M41.066 0.34082C18.422 0.34082 0 18.7428 0 41.3618C0 63.9908 18.422 82.3998 41.066 82.3998C63.692 82.3998 82.099 63.9898 82.099 41.3618C82.1 18.7428 63.692 0.34082 41.066 0.34082Z" fill="white"/>
-                                    <path d="M230.454 94.7607C205.459 94.7607 186.982 105.506 175.775 117.715V104.73C175.775 101.969 173.537 99.7297 170.775 99.7297H111.176C108.414 99.7297 106.176 101.969 106.176 104.73V304.658C106.176 307.42 108.414 309.658 111.176 309.658H173.273C176.035 309.658 178.273 307.42 178.273 304.658V205.74C178.273 172.407 187.327 159.421 210.563 159.421C235.869 159.421 237.88 180.239 237.88 207.455V304.659C237.88 307.421 240.118 309.659 242.88 309.659H305C307.762 309.659 310 307.421 310 304.659V194.995C310 145.43 300.549 94.7607 230.454 94.7607Z" fill="white"/>
-                                    </svg>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="footer-copyright">&copy; 2021 Open Art Market, all rights reserved</div>
-                </div>
-            </div>
-        </footer>
+        </div>
     </div>
     
-    <script src="dist/js/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         var SUPABASE_URL = 'https://yjddxwxtqedktdxnoybg.supabase.co'
-var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDY5OTUxMywiZXhwIjoxOTQ2Mjc1NTEzfQ.hPcNfBocdk9Gd7q--BQvh99g00xrzaE1_bbSui-Ntys'
-
-var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-window.userToken = null
-const showThankYouMessage = ()=>{
-    document.querySelector("#talk-to-server").style.display = 'none';
-    document.querySelector("#thanks").style.display = 'block';
-}
-let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
-if(matched) document.body.classList.add('lights-off')
-
-const logInSubmitted = (event) => {
-  //event.preventDefault()
-  const email = document.querySelector('#email').value
-  //const password = event.target[1].value
-  document.querySelector("#waitlist").style.display = 'none';
-  document.querySelector("#talk-to-server").style.display = 'block';
-
-  supabase.auth
-    .signIn({ email })
-    .then((response) => {
-      showThankYouMessage()
-    })
-    .catch((err) => {
-      alert(err.response.text)
-    })
-}
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y052P7B8X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5Y052P7B8X');
-</script>
-<script defer src="https://untitled-fohfeiclc0qt.runkit.sh/beacon"></script>
+        var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDY5OTUxMywiZXhwIjoxOTQ2Mjc1NTEzfQ.hPcNfBocdk9Gd7q--BQvh99g00xrzaE1_bbSui-Ntys'
+        
+        var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        window.userToken = null
+        let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(matched) document.body.classList.add('lights-off')
+        
+        const logInSubmitted = (event) => {
+            event.preventDefault();
+            const email = document.querySelector('#email').value
+            supabase.auth
+            .signIn({ email })
+            .then((response) => {
+                console.log('done', response)
+            })
+            .catch((err) => {
+                alert(err.response.text)
+            })
+        }
+    </script>
+    <script>
+        window.	onload = function(){
+            
+            var canvas = document.getElementById('textparticle'),
+            ctx = canvas.getContext('2d');
+            
+            var cw = canvas.width  =  window.innerWidth;
+            var ch = canvas.height =  450;
+            var keyword;
+            var radius = 100;
+            var drag = 0.79;
+            var ease = 0.0001;
+            var density = 2;
+            var offset = 0;
+            var timeout = 25;
+            var pixels;
+            var particles = [];
+            
+            var mx = 0, my = 0;
+            
+            keyword = "O";
+            ctx.font = "320px 'ButlerExtraBold'";
+            var mtw = ctx.measureText(keyword).width;
+            var mth = ctx.measureText(keyword).height;
+            ctx.fillText(keyword, ( cw / 2 ) - ( Math.round(mtw/2 ) ) , ~~(( ch / 2 )) );
+            
+            keyword = "Own.";
+            ctx.font = "32px 'ButlerExtraBold'";
+            ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+40) );
+            
+            keyword = "Collect.";
+            ctx.font = "32px 'ButlerExtraBold'";
+            ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+70) );
+            
+            keyword = "Experience.";
+            ctx.font = "32px 'ButlerExtraBold'";
+            ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+100) );
+            
+            
+            
+            
+            
+            canvas.addEventListener('mousemove',function(e){
+                
+                mx = e.clientX - canvas.offsetLeft;
+                my = e.clientY - canvas.offsetTop;
+                
+            });
+            
+            var Particle = function(x,y)
+            {
+                this.hx = ~~(x - offset * Math.random() );
+                this.hy = ~~(y - offset * Math.random() );
+                this.cx = ~~(cw * Math.random()) ;
+                this.cy = ~~(ch * Math.random()) ;
+                this.vx = Math.random()*10-5;
+                this.vy = Math.random()*10-5;
+            }
+            
+            
+            Particle.prototype.update = function()
+            {
+                var dx = this.cx - mx;
+                var dy = this.cy - my;
+                var ds =  (dx * dx) + (dy * dy);
+                var aradius = Math.min(radius / ds, radius);
+                var theta   = Math.atan2(dy, dx);
+                
+                var hdx = this.hx - this.cx;
+                var hdy = this.hy - this.cy;
+                var hds = Math.sqrt( (hdx * hdx) + (hdy * hdy) )  ;
+                var hf  = (hds * 0.01) ;
+                var htheta = Math.atan2(hdy, hdx);
+                
+                
+                
+                this.vx += aradius * Math.cos(theta) + hf * Math.cos(htheta);
+                this.vy += aradius * Math.sin(theta) + hf * Math.sin(htheta);
+                
+                this.vx *= drag;
+                this.vy *= drag;
+                
+                this.cx += this.vx;
+                this.cy += this.vy;
+                
+                
+                this.cx = this.cx + (this.vx *= drag) + ( this.hx - this.cx ) * ease;
+                this.cy = this.cy + (this.vy *= drag) + ( this.hy - this.cy ) * ease;
+            }
+            Particle.prototype.remove = function(){
+                this.cx = 10000000;
+                this.cy = 10000000;
+            }
+            var remove = function(){
+                for( var i=0; i < particles.length; i++ )
+                {
+                    particles[i].remove();
+                }
+                particles = [];
+            }
+            
+            var draw = function()
+            {
+                
+                b = (a = ctx.createImageData(cw, ch) ).data
+                
+                
+                for( var i=0; i < particles.length; i++ )
+                {
+                    particles[i].update();
+                }
+                
+                for( var i=0; i < particles.length; i++ )
+                {
+                    p = particles[i];
+                    b[n = ( ~~p.cx + ( ~~p.cy * cw ) ) * 4] = b[n+1] = b[n+2] = 220, b[n+3] = 255;
+                    
+                }
+                
+                //a.data = b;
+                
+                ctx.putImageData( a, 0, 0 );
+                setTimeout(function(){
+                    requestAnimationFrame(draw);
+                }, timeout );
+                
+            }
+            
+            
+            var init = function()
+            {
+                pixels = ctx.getImageData(0, 0, cw, ch).data;
+                for( var i = 0; i < ch; i = i + density )
+                {
+                    for( var j = 0; j < cw; j = j + density)
+                    {
+                        var index = (j  + i * cw ) *4  ;
+                        
+                        if( pixels[index + 3] > 128)
+                        {
+                            //acts ad a filter for adding new particles.
+                            //particles.push( new Particle(j,i) );
+                            if( index >= particles.length)
+                            {
+                                particles.push( new Particle(j,i) );
+                            }
+                            else
+                            {
+                                particles[index].hx = j;
+                                particles[index].hy = i;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            init();
+            draw();
+            
+            
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Y052P7B8X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5Y052P7B8X');
+    </script>
+    <script src="https://oam-beacon.herokuapp.com/beacon"></script>
 </body>
 </html>
