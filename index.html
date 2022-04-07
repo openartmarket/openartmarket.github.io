@@ -216,6 +216,17 @@
         }
     </script>
     <script>
+        if(!console || !console.log) {
+            var console = {
+                log: ()=>{}
+            }
+        }
+
+        console.log('🦄 Hello there!');
+        console.log('💯 We like curious people like you.');
+        console.log('👀 If you are looking for how we made the thing on the page, it is all in this page.');
+        console.log('👨‍🎤 and we copied that from https://codepen.io/vedadeepta/pen/MpgovO')
+        console.log('💩 Hope to see you on the waitlist!')
         window.	onload = function(){
             
             var canvas = document.getElementById('textparticle'),
@@ -241,15 +252,15 @@
             var mth = ctx.measureText(keyword).height;
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round(mtw/2 ) ) , ~~(( ch / 2 )) );
             
-            keyword = "Own.";
+            keyword = "Own";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+40) );
             
-            keyword = "Collect.";
+            keyword = "Fractions";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+70) );
             
-            keyword = "Experience.";
+            keyword = "of Unique Art";
             ctx.font = "32px 'ButlerExtraBold'";
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round( ctx.measureText(keyword).width/2 ) ) , ~~((ch/2)+100) );
             
