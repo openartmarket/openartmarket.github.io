@@ -49,6 +49,7 @@
         }
         .c-checkbox:checked + .c-formContainer .c-form {
             width: 37.5em;
+            max-width: 23rem;
         }
         .c-checkbox:checked + .c-formContainer .c-form__toggle {
             visibility: hidden;
@@ -182,7 +183,7 @@
             <input class="c-checkbox" type="checkbox" id="checkbox">
             <div class="c-formContainer">
                 <form class="c-form" action="">
-                    <input class="c-form__input" placeholder="e-mail@company.com" type="email" id="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                    <input class="c-form__input" placeholder="e-mail" type="email" id="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
                     <label class="c-form__buttonLabel" for="checkbox" onclick="javascript:logInSubmitted()">
                         <button class="c-form__button" type="button">Submit</button>
                     </label>
