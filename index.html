@@ -233,8 +233,8 @@
             var canvas = document.getElementById('textparticle'),
             ctx = canvas.getContext('2d');
 
-            var cw = canvas.width  =  window.innerWidth;
-            var ch = canvas.height =  450;
+            var cw = canvas.width  =  580;
+            var ch = canvas.height =  16;
             var keyword;
             var radius = 500;
             var drag = 0.88;
@@ -248,7 +248,7 @@
             var mx = 0, my = 0;
 
             keyword = "O";
-            ctx.font = "320px 'ButlerExtraBold'";
+            ctx.font = "16px 'Monaco', monospace";
             var mtw = ctx.measureText(keyword).width;
             var mth = ctx.measureText(keyword).height;
             ctx.fillText(keyword, ( cw / 2 ) - ( Math.round(mtw/2 ) ) , ~~(( ch / 2 )) );
@@ -348,7 +348,7 @@
 
                 //a.data = b;
 
-                ctx.putImageData( a, 0, 0 );
+                //ctx.putImageData( a, 0, 0 );
                 setTimeout(function(){
                     requestAnimationFrame(draw);
                 }, timeout );
@@ -398,6 +398,6 @@
         gtag('js', new Date());
         gtag('config', 'G-5Y052P7B8X');
     </script>
-    <script src="https://oam-beacon.herokuapp.com/beacon"></script>
+    <script async defer src="https://oam-beacon.herokuapp.com/beacon"></script>
 </body>
 </html>
